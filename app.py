@@ -1,4 +1,6 @@
 import streamlit as st
+from PIL import Image
+import os
 
 # Thiết lập cấu hình trang
 st.set_page_config(
@@ -74,11 +76,18 @@ col1, col2 = st.columns([0.35, 0.65], gap="large")
 
 # ================= CỘT TRÁI =================
 with col1:
-    # Ảnh đại diện
-    try:
-        st.image("image_9d1808.jpg", width=180)
-    except:
-        # Trường hợp chạy local chưa có ảnh
+    # Đọc và hiển thị ảnh đại diện (avata.img)
+    image_path = "avata.img"
+    if os.path.exists(image_path):
+        try:
+            image = Image.open(image_path)
+            st.image(image, width=180)
+        except Exception:
+            # Nếu file .img là chuỗi định dạng tiêu chuẩn, đọc trực tiếp bằng Streamlit
+            st.image(image_path, width=180)
+    else:
+        # Trường hợp không tìm thấy file avata.img trong thư mục
+        st.warning("Không tìm thấy file 'avata.img'. Hiển thị ảnh mặc định:")
         st.image("https://via.placeholder.com/180", width=180)
     
     # Mục tiêu
@@ -92,4 +101,46 @@ with col1:
     st.markdown("""
     * Hiểu và vận dụng kiến thức về tài chính, ngân hàng, tín dụng
     * Phân tích số liệu, đọc và tổng hợp BCTC
-    * Sử dụng Excel,
+    * Sử dụng Excel, Word, PowerPoint và các phần mềm văn phòng phục vụ công việc
+    * Kỹ năng giao tiếp, làm việc nhóm và thuyết trình
+    * Cẩn thận, có trách nhiệm, khả năng học hỏi nhanh
+    """)
+
+# ================= CỘT PHẢI =================
+with col2:
+    # Thông tin cá nhân
+    st.markdown('<div class="main-title">Thu Thảo</div>', unsafe_allow_html=True)
+    st.markdown("""
+    338 Nguyễn Thị Minh Khai, Phường Dĩ An, TPHCM  
+    **Sđt:** 0374 269 428  
+    **Mail:** kieuthao105205@gmail.com
+    """)
+    
+    # Kinh nghiệm liên quan
+    st.markdown('<div class="section-header">Kinh nghiệm liên quan</div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="sub-header">Hội sinh viên ngành Tài chính, Chi hội trưởng đại học NTT</div>', unsafe_allow_html=True)
+    st.markdown('<div class="date-text">Tháng 7, 2023 - Nay</div>', unsafe_allow_html=True)
+    st.markdown("""
+    * Hỗ trợ tổ chức các hoạt động học thuật và sự kiện của chi Hội
+    * Phụ trách một số công việc hành chính, thu quỹ, tổng hợp thông tin
+    * Tham gia chuẩn bị nội dung báo cáo hoạt động định kỳ
+    * Rèn luyện kỹ năng giao tiếp, làm việc nhóm
+    """)
+    
+    st.markdown('<div class="sub-header">Tình nguyện viên hỗ trợ hành chính</div>', unsafe_allow_html=True)
+    st.markdown('<div class="date-text">Tháng 5, 2024</div>', unsafe_allow_html=True)
+    st.markdown("""
+    * Hỗ trợ các công việc hành chính văn phòng cơ bản theo phân công
+    * Thực hiện nhập liệu, sắp xếp và lưu trữ hồ sơ
+    * Hỗ trợ gửi và nhận hồ sơ qua email
+    * Đảm bảo công việc thực hiện đúng quy trình và thời hạn
+    """)
+    
+    # Học vấn
+    st.markdown('<div class="section-header">Học vấn</div>', unsafe_allow_html=True)
+    st.markdown("""
+    **Cử nhân Tài chính - Ngân hàng** Đại học Nguyễn Tất Thành - TPHCM  
+    Dự kiến tốt nghiệp năm 2026  
+    GPA 2.9/4
+    """)
