@@ -76,18 +76,17 @@ col1, col2 = st.columns([0.35, 0.65], gap="large")
 
 # ================= CỘT TRÁI =================
 with col1:
-    # Đọc và hiển thị ảnh đại diện (avata.img)
-    image_path = "avata.img"
+    # Đọc và hiển thị ảnh đại diện (avata.jpg)
+    image_path = "avata.jpg"
     if os.path.exists(image_path):
         try:
             image = Image.open(image_path)
             st.image(image, width=180)
         except Exception:
-            # Nếu file .img là chuỗi định dạng tiêu chuẩn, đọc trực tiếp bằng Streamlit
             st.image(image_path, width=180)
     else:
-        # Trường hợp không tìm thấy file avata.img trong thư mục
-        st.warning("Không tìm thấy file 'avata.img'. Hiển thị ảnh mặc định:")
+        # Trường hợp không tìm thấy file avata.jpg trong thư mục
+        st.warning("Không tìm thấy file 'avata.jpg'. Hiển thị ảnh mặc định:")
         st.image("https://via.placeholder.com/180", width=180)
     
     # Mục tiêu
