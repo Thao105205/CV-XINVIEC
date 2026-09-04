@@ -227,9 +227,10 @@ st.markdown("""
 <div class="header">
 
     <div class="photo-box">
-        <img
-            src="https://via.placeholder.com/170"
-            class="profile-photo"
+<img
+    src="img.jpg"
+    class="profile-photo"
+>
         >
     </div>
 
